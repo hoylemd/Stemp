@@ -1,5 +1,7 @@
 import argparse
 
+from templator import Stemp
+
 parser = argparse.ArgumentParser(description='Render a Stemp template.')
 
 help_string = 'Path to the values file. Should be in json dictionary format'
@@ -20,7 +22,6 @@ parser.add_argument('-s', '--specification', dest='print_specification',
 args = parser.parse_args()
 
 import json
-from pprint import pprint
 
 if __name__ == '__main__':
     print 'values at: %s' % args.values_path
@@ -31,9 +32,22 @@ if __name__ == '__main__':
     with open(args.values_path) as values_file:
         values = json.load(values_file)
 
-    pprint(values)
+    # load lines
+    if args.template_path:
+        with open(args.template_path) as template_file:
+            lines = template_file.readlines()
+    else:
+        raise NotImplementedError
+
     # initialize templator
+    templator = Stemp(values)
 
     # invoke templator
+    output = templator.apply(lines)
 
     # output file
+    if args.output_path:
+        with open(args.template_path) as output_file:
+            output_file.writelines(output)
+    else:
+        print ''.join(output)
