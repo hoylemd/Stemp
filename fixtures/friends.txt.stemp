@@ -1,5 +1,6 @@
+I am not friends with &(enemy). &(enemy_pronoun)(&(enemy)) is the worst!
+
 Hi there, My name is &(my_name), and I have friends.
 
 My best friend is &(best_friend). I am also friends with &(other_friend).
 
-I am not friends with &(enemy). $(enemy_pronoun) is the worst!
