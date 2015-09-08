@@ -24,10 +24,6 @@ args = parser.parse_args()
 import json
 
 if __name__ == '__main__':
-    print 'values at: %s' % args.values_path
-    print 'input at: %s' % (args.template_path or 'stdin')
-    print 'output to: %s' % (args.output_path or 'stdout')
-
     # load values
     with open(args.values_path) as values_file:
         values = json.load(values_file)
@@ -47,7 +43,7 @@ if __name__ == '__main__':
 
     # output file
     if args.output_path:
-        with open(args.template_path) as output_file:
+        with open(args.output_path, 'w') as output_file:
             output_file.writelines(output)
     else:
         print ''.join(output)
